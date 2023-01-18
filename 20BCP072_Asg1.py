@@ -29,32 +29,24 @@ def getChild(node):
     return child
 
 
-def bfs(start, goal):
-    current = start
-    q = [start]
-    visited = []
-    parent = []
+def dfs(start, goal, stack):
+    child = getChild(start)
+    stack.append(start)
+    if start == goal:
+        return [start]
 
-    while (len(q) != 0) and current != goal:
-        q.pop(0)
-        visited.append(current)
-        for i in getChild(current):
-            q.append(i)
-        current = q[0]
-
-    path = [goal]
-
-    lv = goal
-    for i in visited[::-1]:
-        if lv in getChild(i):
-            path.append(i)
-            lv = i
-        else:
-            continue
-    print("Traversal:", (visited))
-    print("Path:", (path[::-1]))
+    for i in child:
+        if i not in stack:
+            leaf = dfs(i, goal, stack)
+            if leaf != None:
+                if goal in leaf:
+                    print(start)
+                    return leaf.append(start)
     
+    return [stack]
+
 start = [0,0]
 goal = [2,0]
 
-bfs(start, goal)
+path = dfs(start, goal, [])
+print("path: ", path[::-1])
