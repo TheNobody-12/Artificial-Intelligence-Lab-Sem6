@@ -39,7 +39,6 @@ def bfs(start, goal):
     while (len(q) != 0) and current != goal:
         q.pop(0)
         visited.append(current)
-        # print(":  child: ",getChild(current), "\n:  current: ",current, ":  queue: ", q)
         for i in getChild(current):
             q.append(i)
         current = q[0]

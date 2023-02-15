@@ -33,7 +33,7 @@ def dfs(start, goal, stack):
     child = getChild(start)
     stack.append(start)
     if start == goal:
-        return [start]
+        return [stack]
 
     for i in child:
         if i not in stack:
